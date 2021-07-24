@@ -90,15 +90,15 @@ impl RType {
         // set rd
         instruction |= ((rd & 0b0001_1111) as u32) << Self::OPCODE_LEN;
         // set funct3
-        instruction |= ((rd & 0b0000_0111) as u32) << (Self::OPCODE_LEN + Self::RD_LEN);
+        instruction |= ((funct3 & 0b0000_0111) as u32) << (Self::OPCODE_LEN + Self::RD_LEN);
         // set rs1
         instruction |=
-            ((rd & 0b0001_1111) as u32) << (Self::OPCODE_LEN + Self::RD_LEN + Self::FUNCT3_LEN);
+            ((rs1 & 0b0001_1111) as u32) << (Self::OPCODE_LEN + Self::RD_LEN + Self::FUNCT3_LEN);
         // set rs2
-        instruction |= ((rd & 0b0001_1111) as u32)
+        instruction |= ((rs2 & 0b0001_1111) as u32)
             << (Self::OPCODE_LEN + Self::RD_LEN + Self::FUNCT3_LEN + Self::RS1_LEN);
         // set funct7
-        instruction |= ((rd & 0b0111_1111) as u32)
+        instruction |= ((func7 & 0b0111_1111) as u32)
             << (Self::OPCODE_LEN + Self::RD_LEN + Self::FUNCT3_LEN + Self::RS1_LEN + Self::RS2_LEN);
         RType(instruction)
     }

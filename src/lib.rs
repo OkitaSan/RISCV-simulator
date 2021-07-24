@@ -28,6 +28,8 @@ mod tests{
     fn test_rtype(){
         let r_inst1:instructions::RType = 0b0000000_10111_00111_000_01100_0110011u32.into();
         let r_inst2:instructions::RType = 0b0100000_01001_10110_000_10110_0110011u32.into();
+        let r_inst3 = instructions::RTypeDebug::from(instructions::RType::new(0b0000000, 0b10111, 0b00111, 0b000, 0b01100, 0b0110011));
+        let r_inst4 = instructions::RTypeDebug::from(instructions::RType::new(0b0100000,0b01001,0b10110,0b000,0b10110,0b0110011));
         assert_eq!(
             instructions::RTypeDebug::from(r_inst1),
             instructions::RTypeDebug{
@@ -49,6 +51,28 @@ mod tests{
                 rd:0b10110,
                 opcode:0b0110011
             }
-        )
+        );
+        assert_eq!(
+            instructions::RTypeDebug::from(r_inst3),
+            instructions::RTypeDebug{
+                funct7:0b0000000,
+                rs2:0b10111,
+                rs1:0b00111,
+                funct3:0b000,
+                rd:0b01100,
+                opcode:0b0110011
+            }
+        );
+        assert_eq!(
+            instructions::RTypeDebug::from(r_inst4),
+            instructions::RTypeDebug{
+                funct7:0b0100000,
+                rs2:0b01001,
+                rs1:0b10110,
+                funct3:0b000,
+                rd:0b10110,
+                opcode:0b0110011
+            }
+        );
     }
 }
