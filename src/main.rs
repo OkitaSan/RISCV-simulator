@@ -1,6 +1,7 @@
 use riscv_emulator::MEMORY;
-
+use riscv_emulator::instructions;
 fn main() {
-    let res = u64::from_le_bytes((-1i64).to_le_bytes()) >> 2 == u64::MAX;
-    println!("{}",res);
+    let r_inst:instructions::RTypeDebug = instructions::RType(0b0000000_00111_01001_000_10011_0110011u32).into();
+    let json = serde_json::to_string(&r_inst).unwrap();
+    println!("{}",json);
 }
